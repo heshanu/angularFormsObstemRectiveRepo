@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { mustMatch } from '../../app/validators/must-match.validator';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {mustMatch} from '../../app/validators/must-match.validator';
 
 @Component({
   selector: 'app-reactive-form-v2',
@@ -11,12 +11,14 @@ export class ReactiveFormV2Component implements OnInit {
   studentForm!: FormGroup;
 
   submitted: boolean = false;
+  isLoading: boolean = false;
 
   get f() {
     return this.studentForm.controls;
   }
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder) {
+  }
 
   ngOnInit(): void {
     this.initForm();
@@ -48,23 +50,22 @@ export class ReactiveFormV2Component implements OnInit {
 
   onSubmit(): void {
     this.submitted = true;
+    console.log(this.studentForm.value.email);
+    if (this.studentForm.valid) {
+      //console.log(this.studentForm.value);
+      // console.log(this.studentForm.controls);
 
-    console.log(this.studentForm.value);
-    console.log(this.studentForm.controls);
+      this.isLoading = true;
 
-    //add values into form controls
-    /*
-    this.studentForm.patchValue({
-      firstName: 'Suranja',
-      lastName: 'Liyanage',
-      dob: '2013.02.15',
-      contactNo: '01236587',
-    });
-*/
-    if (this.studentForm.invalid) {
-      alert('Invalid');
+      //avoiding redudancy data insertion
+      setTimeout(() => {
+        console.log('Response');
+        this.isLoading = false;
+      }, 3000)
+
     }
   }
+
   clearForm(): void {
     this.submitted = false;
     this.studentForm.reset();

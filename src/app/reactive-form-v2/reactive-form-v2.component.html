@@ -106,9 +106,11 @@
 </div>-->
 
 <div class="container">
-  <h2 class="mt-5">Student Registration Form</h2>
-  <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
-    <div class="col-6">
+  <h2 class="md-10 ml-10 " style="margin-left:300px;margin-top:50px;margin-bottom:20px ; width:100%">Student
+    Registration Form</h2>
+  <form [formGroup]="studentForm" (ngSubmit)="onSubmit()"
+        style="margin-left:300px ;margin-top:50px;margin-bottom:20px; width:100%">
+    <div class="col-6 clearfix">
       <div class="form-group">
         <label>First Name</label>
         <input
@@ -121,19 +123,17 @@
             'is-valid':  !f['firstName'].errors
           }"
         />
-<!--
-        <input
-        formControlName="firstName"
-        type="text"
-        class="form-control"
-        placeholder="Enter First Name"
-        [ngClass]="(
-          submitted==true && f['firstName'].errors ? 'is-invalid':'is-valid'
-        )"
+        <!--
+                <input
+                formControlName="firstName"
+                type="text"
+                class="form-control"
+                placeholder="Enter First Name"
+                [ngClass]="(
+                  submitted==true && f['firstName'].errors ? 'is-invalid':'is-valid'
+                )"
 
-      />-->
-
-
+              />-->
 
 
         <div
@@ -316,16 +316,16 @@
     </div>
 
     <div class="container">
-      <button type="submit" class="btn btn-primary ml-5">Submit</button>
+      <button [disabled]="isLoading"  style="margin-left: 100px" type="submit" class="btn btn-primary ml-5"><i class="fa fa-spinner fa-spin" aria-hidden="true" *ngIf="isLoading"></i>Submit</button>
       <button
         type="reset"
         class="btn btn-danger ml-5 mr-5"
-        (click)="clearForm()"
+        (click)="clearForm()" style="margin-left: 10px;margin-right: 10px"
       >
-        Clear
+        <i  class="fa-solid fa-rotate"></i>Clear
       </button>
     </div>
   </form>
 </div>
 
-<br /><br />
+<br/><br/>
