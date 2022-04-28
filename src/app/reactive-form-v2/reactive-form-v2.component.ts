@@ -39,8 +39,8 @@ export class ReactiveFormV2Component implements OnInit {
         contactNo: ['', [Validators.required]],
         address: ['', [Validators.required], Validators.maxLength(200)],
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(8)]],
-        conformPassword: ['', [Validators.required]],
+        password: ['', [Validators.minLength(8),Validators.required]],
+        conformPassword: ['',[Validators.minLength(8),Validators.required]]
       },
       {
         validators: mustMatch('password', 'conformPassword'),
@@ -50,10 +50,9 @@ export class ReactiveFormV2Component implements OnInit {
 
   onSubmit(): void {
     this.submitted = true;
-    console.log(this.studentForm.value.email);
+
+
     if (this.studentForm.valid) {
-      //console.log(this.studentForm.value);
-      // console.log(this.studentForm.controls);
 
       this.isLoading = true;
 
@@ -66,8 +65,10 @@ export class ReactiveFormV2Component implements OnInit {
     }
   }
 
+
   clearForm(): void {
     this.submitted = false;
     this.studentForm.reset();
   }
+
 }
