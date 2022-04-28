@@ -1,0 +1,133 @@
+<div class="container">
+  <div class="col-6">
+    <form action="" novalidate #f="ngForm" (ngSubmit)="onSubmit()">
+      <h2 class="mt-5">Student Registration</h2>
+
+      <fieldset ngModelGroup="name">
+        <div class="form-group">
+          <label for="">Firstname</label>
+          <input
+            #firstname="ngModel"
+            [ngClass]="{
+              'is-invalid':
+                firstname.invalid && (firstname.invalid || firstname.touched),
+              'is-valid':
+                firstname.valid && (firstname.invalid || firstname.touched)
+            }"
+            minlength="1"
+            required
+            class="form-control"
+            type="text"
+            [(ngModel)]="studentModel.firstName"
+            placeholder="firstname"
+            name="firstName"
+            ngModel
+          />
+          <div class="invalid-feedback">
+            <p *ngIf="firstname.errors">Please fill first name!</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="">LastName</label>
+          <input
+            #lastName="ngModel"
+            [ngClass]="{
+              'is-invalid':
+                lastName.invalid && (lastName.invalid || lastName.touched),
+              'is-valid':
+                lastName.valid && (lastName.invalid || lastName.touched)
+            }"
+            required
+            class="form-control"
+            [(ngModel)]="studentModel.lastName"
+            type="text"
+            placeholder="LastName"
+            name="lastName"
+            ngModel
+          />
+        </div>
+        <div class="invalid-feedback">
+          <p *ngIf="firstname.errors">Please fill last name!</p>
+        </div>
+      </fieldset>
+
+      <div class="form-group">
+        <label for="">email</label>
+        <input
+          #email="ngModel"
+          [ngClass]="{
+            'is-invalid': email.invalid && (email.invalid || email.touched),
+            'is-valid': lastName.valid && (email.invalid || email.touched)
+          }"
+          required
+          ngModel
+          [(ngModel)]="studentModel.email"
+          class="form-control"
+          autocomplete="off"
+          type="email"
+          placeholder="email"
+          name="email"
+        />
+        <div class="invalid-feedback">
+          <p *ngIf="firstname.errors">Please fill email!</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="">password</label>
+        <input
+          #password="ngModel"
+          [ngClass]="{
+            'is-invalid':
+              password.invalid && (password.invalid || password.touched),
+            'is-valid': password.valid && (password.invalid || password.touched)
+          }"
+          minlength="8"
+          required
+          ngModel
+          [(ngModel)]="studentModel.password"
+          name="password"
+          class="form-control"
+          type="text"
+          placeholder="password"
+        />
+        <div class="invalid-feedback">
+          <p *ngIf="firstname.errors">Please fill passwords!</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="">Language</label>
+        <select
+          #lan="ngModel"
+          [ngClass]="{
+            'is-invalid': lan.invalid && (lan.invalid || lan.touched),
+            'is-valid': lan.valid && (lan.invalid || lan.touched)
+          }"
+          required
+          ngModel
+          class="form-control"
+          name="lan"
+        >
+          <option disabled>select value</option>
+          <option *ngFor="let l of language" [value]="l">{{ l }}</option>
+        </select>
+        <div class="invalid-feedback">
+          <p *ngIf="firstname.errors">Please fill first name!</p>
+        </div>
+      </div>
+
+      <button
+        [disabled]="f.invalid"
+        class="btn btn-primary"
+        type="submit"
+        value="submit"
+      >
+        Submit
+      </button>
+    </form>
+
+    <p>{{ f.value | json }}</p>
+  </div>
+</div>
