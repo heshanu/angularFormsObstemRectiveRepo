@@ -1,0 +1,210 @@
+<div class="container">
+  <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()" (click)="c()">
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Invoice</h2>
+      </div>
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Invoice No</label>
+                  <input type="text"
+                         [ngClass]="{
+            'is-invalid': submitted1 && f['invoiceNo'].errors,
+            'is-valid': !f['invoiceNo'].errors
+          }" formControlName="invoiceNo" class="form-control" placeholder="Enter Invoice No">
+                  <div
+                    class="invalid-feedback"
+                    *ngIf="submitted1 && f['invoiceNo'].errors"
+                  >
+                    <div *ngIf="f['invoiceNo'].errors['required']">
+                      Please Enter InvoiceNo
+                    </div>
+                    <div *ngIf="f['invoiceNo'].errors['pattern']">
+                      Name cant be numbers
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label>Invoice Date</label>
+                    <input type="date" [ngClass]="{
+            'is-invalid': submitted1 && f['invoiceDate'].errors,
+            'is-valid': !f['invoiceDate'].errors
+          }" formControlName="invoiceDate" class="form-control"
+                           placeholder="Enter Invoice Date">
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="submitted1 && f['invoiceDate'].errors"
+                    >
+                      <div *ngIf="f['invoiceDate'].errors['required']">
+                        Please Enter Valid Date
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label>Customer Name</label>
+                    <input  [ngClass]="{
+            'is-invalid': submitted1 && f['customerName'].errors,
+            'is-valid': !f['customerName'].errors
+          }" type="text" formControlName="customerName" class="form-control"
+                           placeholder="Enter Customer Name">
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="submitted1 && f['customerName'].errors"
+                    >
+                      <div *ngIf="f['customerName'].errors['required']">
+                        Please Enter InvoiceNo
+                      </div>
+                      <div *ngIf="f['customerName'].errors['pattern']">
+                        Name cant be numbers
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label>Contact No</label>
+                    <input type="text" formControlName="contactNumber" class="form-control"
+                           placeholder="Enter Contact No">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label>Address</label>
+                    <input type="text" formControlName="address" class="form-control" placeholder="Enter Address">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Remarks</label>
+                    <input type="text" formControlName="remark" class="form-control" placeholder="Enter Remarks">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12" *ngIf="submitted">
+          <div class="card mt-2">
+            <div class="card-body">
+
+              <div class="row">
+                <button type="button" class="btn btn-secondary ml-3"> Add New</button>
+              </div>
+
+              <div class="row">
+                <div class="col-md-3">
+                  <label>Item Name</label>
+                </div>
+                <div class="col-md-3">
+                  <label>Unit Price</label>
+                </div>
+                <div class="col-md-2">
+                  <label>Quantity</label>
+                </div>
+                <div class="col-md-3">
+                  <label>Total</label>
+                </div>
+                <div class="col-md-1">
+                </div>
+              </div>
+              <div class="row mt-2">
+                <div class="col-md-3">
+                  <input type="text" class="form-control" placeholder="Enter Item Name">
+                </div>
+                <div class="col-md-3">
+                  <input type="number" class="form-control text-right" placeholder="Enter Unit Price">
+                </div>
+                <div class="col-md-2">
+                  <input type="number" class="form-control text-right" placeholder="Enter Quantity">
+                </div>
+                <div class="col-md-3">
+                  <input type="number" class="form-control text-right" placeholder="Enter Total">
+                </div>
+                <div class="col-md-1">
+                  <button type="button" class="btn btn-danger">X</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="card mt-2">
+            <div class="card-body">
+
+              <div class="row">
+                <div class="col-md-2 offset-md-7">
+                  <div class="form-group">
+                    <label>Gross Amount</label>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <input type="number" class="form-control text-right" placeholder="Enter Gross AMount">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-2 offset-md-7">
+                  <div class="form-group">
+                    <label>Discount</label>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <input type="number" class="form-control text-right" placeholder="Enter Discount">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-2 offset-md-7">
+                  <div class="form-group">
+                    <label>Net Amount</label>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <input type="number" class="form-control text-right" placeholder="Enter Net Amount">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12">
+          <div class="card mt-2">
+            <div class="card-body">
+
+              <div class="float-right">
+                <button type="button" class="btn btn-warning" (click)="clearForm()"> Clear</button>
+                <button type="button" class="btn btn-primary ml-3" (click)="c1()"> Save</button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
