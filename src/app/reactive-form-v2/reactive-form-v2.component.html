@@ -212,6 +212,9 @@
           <div *ngIf="f['contactNo'].errors['required']">
             Please Enter Contact No
           </div>
+          <div *ngIf="f['contactNo'].errors['pattern']">
+            Please Enter valid Contact No
+          </div>
         </div>
       </div>
     </div>

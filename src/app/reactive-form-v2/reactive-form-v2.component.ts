@@ -36,7 +36,7 @@ export class ReactiveFormV2Component implements OnInit {
           [Validators.required, Validators.pattern('[A-Za-z]{4,15}$')],
         ],
         dob: ['', [Validators.required]],
-        contactNo: ['', [Validators.required]],
+        contactNo: ['', [Validators.required,Validators.pattern('/^(\\+\\d{1,3}[- ]?)?\\d{10}$/')]],
         address: ['', [Validators.required], Validators.maxLength(200)],
         email: ['', [Validators.required, Validators.email]],
         password: ['', [Validators.minLength(8),Validators.required]],
