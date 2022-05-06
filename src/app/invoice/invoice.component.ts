@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 
-
 @Component({
   selector: 'app-invoice',
   templateUrl: './invoice.component.html',
@@ -102,7 +101,7 @@ export class InvoiceComponent implements OnInit {
       grossAmount += Number(formRow.get('total')?.value);
     }
 
-    netAmount=grossAmount-((grossAmount*discount)/100);
+    netAmount = grossAmount - ((grossAmount * discount) / 100);
 
     //assign value to grossAmount
     this.invoiceForm.get("grossAmount")?.setValue(grossAmount);

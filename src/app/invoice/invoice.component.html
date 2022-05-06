@@ -23,9 +23,6 @@
                     <div *ngIf="f['invoiceNo'].errors['required']">
                       Please Enter InvoiceNo
                     </div>
-                    <div *ngIf="f['invoiceNo'].errors['pattern']">
-                      Name cant be numbers
-                    </div>
                   </div>
                 </div>
                 <div class="col-md-3">
@@ -128,16 +125,47 @@
               <div class="row mt-2" formArrayName="lineItems">
                 <div class="row mt-2" *ngFor="let line of lineItems.controls;let i=index" [formGroupName]="i">
                   <div class="col-md-3">
-                    <input type="text" name="itemName" class="form-control" placeholder="Enter Item Name" formControlName="itemName">
+                    <input type="text" name="itemName" class="form-control"
+                           placeholder="Enter Item Name" formControlName="itemName"
+                           [ngClass]="{
+            'is-invalid': submitted && f['itemName'].errors,
+            'is-valid':  !f['itemName'].errors
+          }"
+                    >
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="submitted && f['firstName'].errors"
+                    >
+                      <div *ngIf="f['firstName'].errors['required']">
+                        Please Enter item Name
+                      </div>
+                    </div>
                   </div>
                   <div class="col-md-3">
-                    <input type="number" name="unitPrice" (keyup)="onUnitPriceQuantityChanged(i)"  formControlName="unitPrice"  class="form-control text-right" formControlName="unitPrice" placeholder="Enter Unit Price">
+                    <input type="number" name="unitPrice" (keyup)="onUnitPriceQuantityChanged(i)"
+                           formControlName="unitPrice" class="form-control text-right"
+                           [ngClass]="{
+            'is-invalid': submitted && f['unitPrice'].errors,
+            'is-valid':  !f['unitPrice'].errors
+          }" formControlName="unitPrice" placeholder="Enter Unit Price">
+                    <div
+                      class="invalid-feedback"
+                      *ngIf="submitted && f['unitPrice'].errors"
+                    >
+                      <div *ngIf="f['unitPrice'].errors['required']">
+                        Please Enter unit price
+                      </div>
+                    </div>
+                    >
+
                   </div>
                   <div class="col-md-2">
-                    <input type="number" name="quantity" (keyup)="onUnitPriceQuantityChanged(i)"  class="form-control text-right" formControlName="quantity" placeholder="Enter Quantity">
+                    <input type="number" name="quantity" (keyup)="onUnitPriceQuantityChanged(i)"
+                           class="form-control text-right" formControlName="quantity" placeholder="Enter Quantity">
                   </div>
                   <div class="col-md-3">
-                    <input type="number" name="total" class="form-control text-right" placeholder="Enter Total" formControlName="total" readonly>
+                    <input type="number" name="total" class="form-control text-right" placeholder="Enter Total"
+                           formControlName="total" readonly>
                   </div>
                   <div class="col-md-1">
                     <button type="button" class="btn btn-danger" (click)="deleteline(i)">X</button>
@@ -160,7 +188,9 @@
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <input type="number" name="grossAmount" (keydown)="calculateNetAmount()" formControlName="grossAmount" readonly class="form-control text-right" placeholder="Enter Gross AMount"
+                    <input type="number" name="grossAmount" (keydown)="calculateNetAmount()"
+                           formControlName="grossAmount" readonly class="form-control text-right"
+                           placeholder="Enter Gross AMount"
                            readOnly>
                   </div>
                 </div>
@@ -174,7 +204,8 @@
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <input name="discount" formControlName="discount" type="number" class="form-control text-right" placeholder="Enter Discount">
+                    <input name="discount" formControlName="discount" type="number" class="form-control text-right"
+                           placeholder="Enter Discount">
                   </div>
                 </div>
               </div>
@@ -187,7 +218,8 @@
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <input type="number" name="netAmount" class="form-control text-right"  placeholder="Enter Net Amount" readonly>
+                    <input type="number" name="netAmount" class="form-control text-right" placeholder="Enter Net Amount"
+                           readonly>
                   </div>
                 </div>
               </div>
