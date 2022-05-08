@@ -19,7 +19,8 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from "@angular/material/radio";
 import {AssignmentModule} from "./assignment/assignment.module";
-
+import { CustomerComponent } from './customer/customer.component';
+import { HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,14 +28,16 @@ import {AssignmentModule} from "./assignment/assignment.module";
     ObservComponent,
     ReactiveFormComponent,
     InvoiceComponent,
-    ReactiveFormV2Component
+    ReactiveFormV2Component,
+    CustomerComponent
   ],
   imports: [
     BrowserModule, CommonModule,
     AppRoutingModule, FormsModule, MatCheckboxModule,
     ReactiveFormsModule, AssignmentRoutingModule,
     BrowserAnimationsModule, MatSliderModule,
-    MatCardModule, MatButtonModule, MatRadioModule, AssignmentModule
+    MatCardModule, MatButtonModule, MatRadioModule, AssignmentModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
